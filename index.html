@@ -12,8 +12,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F7F5F2;
-            color: #4F4A45;
+            background-color: #F7F5F2; /* Off-white */
+            color: #4F4A45; /* Dark brown */
             line-height: 1.6;
         }
         .app-container {
@@ -28,8 +28,8 @@
             overflow: hidden; /* Hide scrollbars on the main container */
         }
         .app-header {
-            background-color: #4F4A45; /* Dark color for header */
-            color: #F7F5F2;
+            background-color: #4F4A45; /* Dark brown for header */
+            color: #F7F5F2; /* Off-white */
             padding: 1.5rem 1rem; /* Increased padding */
             text-align: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* More pronounced shadow */
@@ -45,7 +45,7 @@
         .app-header p {
             font-size: 1.25rem; /* Slightly larger font for subtitle */
             font-weight: 700; /* Bolder subtitle */
-            color: #CFB784; /* Highlight color for subtitle */
+            color: #CFB784; /* Gold/tan for subtitle */
         }
         .main-content-area {
             flex-grow: 1;
@@ -73,15 +73,15 @@
             padding: 0.5rem;
             border-radius: 8px;
             transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-            color: #8C8C88; /* Default icon/text color */
+            color: #8C8C88; /* Medium grey (default icon/text color) */
         }
         .nav-item:hover {
-            background-color: #CFB784;
-            color: #4F4A45;
+            background-color: #CFB784; /* Gold/tan */
+            color: #4F4A45; /* Dark brown */
         }
         .nav-item.active {
-            background-color: #CFB784;
-            color: #4F4A45;
+            background-color: #CFB784; /* Gold/tan */
+            color: #4F4A45; /* Dark brown */
         }
         .nav-item-icon {
             font-size: 1.5rem;
@@ -98,10 +98,10 @@
             display: block; /* Shown when active */
         }
         .section-heading {
-            color: #CFB784;
+            color: #CFB784; /* Gold/tan */
         }
         .sub-section-heading {
-            color: #4F4A45;
+            color: #4F4A45; /* Dark brown */
         }
         ul, ol {
             padding-left: 1.5rem;
@@ -117,12 +117,12 @@
             margin-bottom: 1rem;
         }
         th, td {
-            border: 1px solid #DFDFDE;
+            border: 1px solid #DFDFDE; /* Light grey */
             padding: 0.75rem;
             text-align: left;
         }
         th {
-            background-color: #DFDFDE;
+            background-color: #DFDFDE; /* Light grey */
             font-weight: 600;
         }
         /* Default toggle-header style (for deepest level) */
@@ -147,6 +147,7 @@
         }
 
         /* Level 1 Toggle Header (for h3 and main h4 toggles) */
+        /* Ito ang style na ginagamit ng "BISYON", "MISYON", at "A. KALIGTASAN UNA" para maging pareho ang kulay. */
         .toggle-header-level1 {
             background-color: #CFB784; /* Gold/tan */
             color: #4F4A45; /* Dark brown */
@@ -186,13 +187,14 @@
             padding: 0 1rem 1rem 1rem;
             overflow: hidden;
             transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            max-height: 0;
-            opacity: 0;
-        }
-        .toggle-content.active {
             max-height: 2000px; /* Adjusted for potentially longer sections */
             opacity: 1;
             padding: 1rem; /* Add padding when active */
+        }
+        .toggle-content:not(.active) {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 1rem; /* Remove vertical padding when collapsed */
         }
         .toggle-header.active .toggle-icon {
             transform: rotate(90deg);
@@ -225,33 +227,39 @@
                     <p class="mb-4">Ang handbook na ito ay binuo nang mahigpit na sumusunod sa mga prinsipyo at probisyon ng mga DepEd Order at Patakaran, lalo na ang DepEd Order No. 40, s. 2012 (Child Protection Policy) at Republic Act No. 10627, na kilala rin bilang Anti-Bullying Act of 2013, kasama ang mga Implementing Rules and Regulations nito. Naniniwala kami na sa pagtutulungan, maitataguyod namin ang kultura ng paggalang, disiplina, at kahusayan sa akademiko, na nagsisigurong bawat bata ay ligtas, pinahahalagahan, at may kakayahang matuto.</p>
                 </div>
 
-                <!-- New container for Vision and Mission toggles, using flex for side-by-side on larger screens -->
-                <div class="flex flex-col md:flex-row md:space-x-4">
-                    <!-- Toggle for BISYON -->
-                    <div class="mb-4 md:w-1/2">
-                        <div class="toggle-header toggle-header-level1" data-toggle="bisyon">
-                            <h3 class="text-xl font-bold section-heading">BISYON:</h3>
-                            <span class="toggle-icon">▶</span>
-                        </div>
-                        <div class="toggle-content" id="bisyon-content">
-                            <p class="mb-4">Isang sistema ng edukasyon na nakasentro sa mag-aaral, kasama ang lahat, at nagbibigay ng kapangyarihan. Patuloy itong bumubuti para protektahan at itaguyod ang karapatan sa de-kalidad, madaling maabot, angkop, at nagpapalaya na batayang edukasyon para sa lahat.</p>
-                        </div>
+                <!-- New Main Toggle for Vision and Mission -->
+                <div class="mb-4">
+                    <div class="toggle-header toggle-header-level1" data-toggle="bisyon-misyon-main">
+                        <h3 class="text-xl font-bold section-heading">BISYON AT MISYON</h3>
+                        <span class="toggle-icon">▶</span>
                     </div>
-
-                    <!-- Toggle for MISYON -->
-                    <div class="mb-4 md:w-1/2">
-                        <div class="toggle-header toggle-header-level1" data-toggle="misyon">
-                            <h3 class="text-xl font-bold section-heading">MISYON:</h3>
-                            <span class="toggle-icon">▶</span>
+                    <div class="toggle-content" id="bisyon-misyon-main-content">
+                        <!-- Nested Toggle for BISYON -->
+                        <div class="mb-4">
+                            <div class="toggle-header toggle-header-level2" data-toggle="bisyon">
+                                <h3 class="text-lg font-bold sub-section-heading">BISYON:</h3>
+                                <span class="toggle-icon">▶</span>
+                            </div>
+                            <div class="toggle-content" id="bisyon-content">
+                                <p class="mb-4">Isang sistema ng edukasyon na nakasentro sa mag-aaral, kasama ang lahat, at nagbibigay ng kapangyarihan. Patuloy itong bumubuti para protektahan at itaguyod ang karapatan sa de-kalidad, madaling maabot, angkop, at nagpapalaya na batayang edukasyon para sa lahat.</p>
+                            </div>
                         </div>
-                        <div class="toggle-content" id="misyon-content">
-                            <p class="mb-4">Protektahan at itaguyod ang karapatan ng bawat Pilipino sa de-kalidad, patas, nakabatay sa kultura, at kumpletong batayang edukasyon kung saan:</p>
-                            <ul class="list-disc ml-6 mb-8">
-                                <li>Ang mga mag-aaral ay natututo sa isang kapaligirang ligtas, nakaka-engganyo, at sensitibo sa kasarian.</li>
-                                <li>Ang mga guro ay gumagabay sa pagkatuto at patuloy na nag-aalaga sa bawat mag-aaral.</li>
-                                <li>Ang mga tagapamahala at kawani, bilang tagapangalaga ng institusyon, ay nagsisigura ng isang kapaligirang sumusuporta para maganap ang epektibong pagkatuto.</li>
-                                <li>Ang pamilya, komunidad, at iba pang kasama ay aktibong nakikilahok at nagbabahagi ng responsibilidad sa paghubog ng mga mag-aaral na patuloy na matuto habambuhay.</li>
-                            </ul>
+
+                        <!-- Nested Toggle for MISYON -->
+                        <div class="mb-4">
+                            <div class="toggle-header toggle-header-level2" data-toggle="misyon">
+                                <h3 class="text-lg font-bold sub-section-heading">MISYON:</h3>
+                                <span class="toggle-icon">▶</span>
+                            </div>
+                            <div class="toggle-content" id="misyon-content">
+                                <p class="mb-4">Protektahan at itaguyod ang karapatan ng bawat Pilipino sa de-kalidad, patas, nakabatay sa kultura, at kumpletong batayang edukasyon kung saan:</p>
+                                <ul class="list-disc ml-6 mb-8">
+                                    <li>Ang mga mag-aaral ay natututo sa isang kapaligirang ligtas, nakaka-engganyo, at sensitibo sa kasarian.</li>
+                                    <li>Ang mga guro ay gumagabay sa pagkatuto at patuloy na nag-aalaga sa bawat mag-aaral.</li>
+                                    <li>Ang mga tagapamahala at kawani, bilang tagapangalaga ng institusyon, ay nagsisigura ng isang kapaligirang sumusuporta para maganap ang epektibong pagkatuto.</li>
+                                    <li>Ang pamilya, komunidad, at iba pang kasama ay aktibong nakikilahok at nagbabahagi ng responsibilidad sa paghubog ng mga mag-aaral na patuloy na matuto habambuhay.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -277,7 +285,7 @@
                                     <span class="toggle-icon">▶</span>
                                 </div>
                                 <div class="toggle-content" id="pagpasok-gate-content">
-                                    <p>Ang mga gate ay sarado mula 7:30 AM hanggang 11:30 AM at mula 12:00 PM hanggang 2:00 PM. Bukas lamang ang ibang gate kung may malinaw na utos mula sa mga tagapamahala ng paaralan (halimbawa, sa mga emergency evacuation, espesyal na kaganapan, o para sa awtorisadong paghahatid).</p>
+                                    <p>Ang mga gate ay sarado mula 7:30 AM hanggang 11:30 AM at mula 12:00 PM hanggang 2:00 PM. Magbubukas lamang gate sa ibang oras kung may malinaw na utos mula sa mga tagapamahala ng paaralan (halimbawa, sa mga emergency evacuation, espesyal na kaganapan, o para sa awtorisadong paghahatid).</p>
                                 </div>
                             </div>
                             <div class="mb-4">
@@ -399,6 +407,36 @@
                                 <div class="toggle-content" id="kultura-paggalang-content">
                                     <p>Ang kaugalian ng paghingi ng basbas sa mga nakatatanda sa pagsasabi ng "Mano Po" ay lubos na hinihikayat sa mga mag-aaral at palalakasin ng mga guro at ng komunidad ng paaralan.</p>
                                     <p>Isang bulletin board sa loob ng silid-aralan ang magpapakita ng mga pangalan ng mga mag-aaral na patuloy na nagpapakita ng kalinisan, kabaitan, pagiging magalang, pagsunod sa paghihiwalang ng basura, at iba pang huwarang pag-uugali, upang magsilbing positibong pampalakas.</p>
+                                </div>
+                            </div>
+                            <!-- NEW POLICY: Pagdalo sa mga Pagpupulong -->
+                            <div class="mb-4">
+                                <div class="toggle-header" data-toggle="pagdalo-meeting">
+                                    <h4>Pagdalo sa mga Pagpupulong:</h4>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="toggle-content" id="pagdalo-meeting-content">
+                                    <p>Mahalaga ang aktibong pagdalo ng mga magulang/tagapag-alaga sa mga school meeting (hal. General Assembly, Parent-Teacher Conferences, Homeroom PTA meetings) upang manatiling updated sa mga pag-unlad ng paaralan, mga patakaran, at mga pagkakataon para sa paglahok sa edukasyon ng kanilang anak. Ang regular na pagdalo ay nagpapakita ng suporta sa paaralan at sa pag-aaral ng mag-aaral.</p>
+                                </div>
+                            </div>
+                            <!-- NEW POLICY: Pagsali at Pagsuporta sa mga Programa ng Paaralan -->
+                            <div class="mb-4">
+                                <div class="toggle-header" data-toggle="pagsali-programa">
+                                    <h4>Pagsali at Pagsuporta sa mga Programa ng Paaralan:</h4>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="toggle-content" id="pagsali-programa-content">
+                                    <p>Ang mga magulang/tagapag-alaga ay hinihikayat na aktibong lumahok at sumuporta sa iba't ibang programa at aktibidad ng paaralan (hal. Brigada Eskwela, feeding programs, school events, fundraising activities). Ang kanilang paglahok ay mahalaga sa paglikha ng isang masigla at sumusuportang kapaligiran sa pag-aaral at sa pagpapabuti ng pasilidad ng paaralan.</p>
+                                </div>
+                            </div>
+                            <!-- NEW POLICY: Pagtulong ng mga Magulang sa Paggabay sa mga Mag-aaral -->
+                            <div class="mb-4">
+                                <div class="toggle-header" data-toggle="pagtulong-magulang-gabay">
+                                    <h4>Pagtulong ng mga Magulang sa Paggabay sa mga Mag-aaral sa Tahanan:</h4>
+                                    <span class="toggle-icon">▶</span>
+                                </div>
+                                <div class="toggle-content" id="pagtulong-magulang-gabay-content">
+                                    <p>Ang mga magulang/tagapag-alaga ay inaasahang magbigay ng patuloy na suporta sa pag-aaral ng kanilang mga anak sa tahanan. Kabilang dito ang paggabay sa pagbabasa, pagsusulat, at matematika, pati na rin ang pagpapatupad ng mga inirekomendang interbensyon sa pag-aaral mula sa mga guro. Ang paglikha ng isang kondusibong kapaligiran sa pag-aaral sa bahay ay mahalaga para sa akademikong pag-unlad ng mag-aaral.</p>
                                 </div>
                             </div>
                         </div>
@@ -526,7 +564,7 @@
                                     <span class="toggle-icon">▶</span>
                                 </div>
                                 <div class="toggle-content" id="awards-committee-content">
-                                    <p>Ang Awards Committee ang tanging responsable sa pagsusuri at pagpapatunay ng lahat ng parangal na ibibigay sa mga mag-aaral, na nagsisigurong patas at sumusunod sa pamantayan.</p>
+                                    <p>Ang Awards Committee ang tanging responsable sa pagsusuri at pagpapatunay ng lahat ng parangal na ibibigay sa mga mag-aaral, na nagsisigurang patas at sumusunod sa pamantayan.</p>
                                     <table>
                                         <thead>
                                             <tr>
@@ -582,34 +620,29 @@
 
             <!-- Patakaran sa Proteksyon at Pag-uugali Section -->
             <section id="proteksyon-pag-uugali" class="section-page">
-                <!-- Removed toggle-header for the main section -->
                 <h2 class="text-2xl font-bold section-heading">II. PATAKARAN SA PROTEKSYON NG PAARALAN AT PAG-UUGALI NG MAG-AARAL</h2>
-                <!-- Changed to toggle-content active for proper scope for sub-toggles -->
                 <div class="toggle-content active" id="section-ii-content">
-                    <!-- Description paragraphs now visible immediately -->
                     <p class="mb-4">Ang Tilambo Elementary School ay nangangako na panatilihin ang isang ligtas at nagpoprotektang kapaligiran para sa lahat ng mag-aaral, malaya sa pang-aabuso, pagsasamantala, karahasan, diskriminasyon, at pambu-bully. Ang aming mga patakaran ay nakabatay sa mga probisyon ng DepEd Order No. 40, s. 2012 (Child Protection Policy) at Republic Act No. 10627 (Anti-Bullying Act of 2013).</p>
                     <p class="mb-4">Para palakasin ang kamalayan at pagpapatupad, ang Child Protection Policy Committee at School Head ay regular na nagsasagawa ng mga seminar-conference para sa mga magulang at mag-aaral na nakatuon sa mga mahahalagang patakarang ito.</p>
                     
-                    <!-- Main Heading: KLASIPIKASYON NG MGA PAGLABAG AT PARUSA (No longer a toggle) -->
                     <h3 class="text-xl font-bold sub-section-heading mt-6 mb-4">KLASIPIKASYON NG MGA PAGLABAG AT PARUSA</h3>
                     
                     <!-- Sub-Toggle: MGA MAGAANG NA PAGLABAG (LIGHT OFFENSES) -->
                     <div class="mb-4">
                         <div class="toggle-header toggle-header-level2" data-toggle="magaan-paglabag-main">
-                            <h4>1. MGA MAGAANG NA PAGLABAG (LIGHT OFFENSES)</h4>
+                            <h4>1. MGA MAGAANG PAGLABAG (LIGHT OFFENSES)</h4>
                             <span class="toggle-icon">▶</span>
                         </div>
                         <div class="toggle-content" id="magaan-paglabag-main-content">
-                            <p class="mb-2">Ang Magaan na Paglabag ay tumutukoy sa isang kilos na (1) labag sa pangkalahatang alituntunin at regulasyon ng paaralan na nakasaad sa Student Handbook na ito o (2) nakakagambala, ngunit hindi nagreresulta sa malubhang pinsala sa katawan o malaking pinsala sa ari-arian.</p>
+                            <p class="mb-2">Ang Magaang na Paglabag ay tumutukoy sa isang kilos na (1) labag sa pangkalahatang alituntunin at regulasyon ng paaralan na nakasaad sa Student Handbook na ito o (2) nakakagambala, ngunit hindi nagreresulta sa malubhang pinsala sa katawan o malaking pinsala sa ari-arian.</p>
 
                             <!-- Nested Toggle: Mga halimbawa ng Magaan Paglabag -->
                             <div class="mb-4">
                                 <div class="toggle-header" data-toggle="halimbawa-magaan">
-                                    <h4>A. Mga Halimbawa ng Magaan Paglabag</h4>
+                                    <h4>A. Mga Halimbawa ng Magaang Paglabag</h4>
                                     <span class="toggle-icon">▶</span>
                                 </div>
                                 <div class="toggle-content" id="halimbawa-magaan-content">
-                                    <p class="font-semibold mb-2">Mga Halimbawa ng Magaan na Paglabag:</p>
                                     <ul class="list-disc ml-6">
                                         <li>Paggamit ng bastos na salita, nakakainsultong komento, o panunukso na hindi kabilang sa depinisyon ng pambu-bully.</li>
                                         <li>Simpleng Pagsuway sa mga utos ng mga guro at iba pang awtoridad ng paaralan.</li>
@@ -632,11 +665,11 @@
                             <!-- Nested Toggle: Mga Parusa para sa Magaan na Paglabag -->
                             <div class="mb-4">
                                 <div class="toggle-header" data-toggle="parusa-magaan">
-                                    <h4>B. Mga Parusa para sa Magaan na Paglabag:</h4>
+                                    <h4>B. Mga Parusa para sa Magaang Paglabag:</h4>
                                     <span class="toggle-icon">▶</span>
                                 </div>
                                 <div class="toggle-content" id="parusa-magaan-content">
-                                    <p class="font-semibold mb-2">Ang mga parusa para sa Magaan na Paglabag ay idinisenyo para maging tama at makapagpabuti, alinsunod sa positibong diskarte sa disiplina ng DepEd.</p>
+                                    <p class="mb-2">Ang mga parusa para sa Magaang na Paglabag ay idinisenyo para maging tama at makapagpabuti, alinsunod sa positibong diskarte sa disiplina ng DepEd.</p>
                                     <ul class="list-disc ml-6">
                                         <li><strong>UNANG PAGLABAG:</strong> Verbal na Pagsaway at Positive Discipline Session ng class adviser kasama ang mag-aaral. Ang sesyon na ito ay nakatuon sa pagpapaliwanag ng epekto ng mga kilos ng mag-aaral at paggabay sa kanila patungo sa angkop na pag-uugali. Ipapaalam sa magulang.</li>
                                         <li><strong>IKALAWANG PAGLABAG:</strong> Behavioral Contract. Isang kasunduan ang pormal na gagawin sa pagitan ng mag-aaral, magulang/tagapag-alaga, at isang kinatawan ng paaralan (halimbawa, guidance counselor, school head). Malinaw na nakasaad sa kontratang ito ang inaasahang pag-uugali, tiyak na layunin, at ang mga kahihinatnan kung muling lalabagin ang parehong paglabag. Maaaring kasama ang isang tagapanagot (halimbawa, opisyal ng barangay, pinagkakatiwalaang lider ng komunidad).</li>
@@ -658,7 +691,7 @@
                         <div class="toggle-content" id="hindi-gaanong-malubhang-paglabag-main-content">
                             <p class="mb-2">Ang Hindi Gaanong Malubhang Paglabag ay tumutukoy sa sadyang pagwawalang-bahala sa mga alituntunin at regulasyon ng paaralan na nagreresulta sa hindi gaanong malubhang pinsala sa katawan o emosyonal, o maliit na pinsala sa ari-arian.</p>
 
-                            <!-- Nested Toggle: Mga Halimbawa ng Hindi Gaanong Malubhang Paglabag -->
+                            <!-- Nested Toggle: Mga halimbawa ng Hindi Gaanong Malubhang Paglabag -->
                             <div class="mb-4">
                                 <div class="toggle-header" data-toggle="halimbawa-hindi-gaanong-malubhang">
                                     <h4>A. Mga Halimbawa ng Hindi Gaanong Malubhang Paglabag</h4>
@@ -706,7 +739,7 @@
                         <div class="toggle-content" id="malubhang-paglabag-main-content">
                             <p class="mb-2">Ang Malubhang Paglabag ay tumutukoy sa anumang kilos na sadyang pagwawalang-bahala sa mga alituntunin at regulasyon ng paaralan na maaaring magresulta sa malubhang pinsala sa katawan, malaking pinsala sa ari-arian, emosyonal na trauma, o paglabag sa batas. Ang mga paglabag na ito ay nangangailangan ng pormal na imbestigasyon ng Child Protection Committee o mga angkop na awtoridad ng paaralan, na nagsisigurong may tamang proseso.</p>
 
-                            <!-- Nested Toggle: Mga Halimbawa ng Malubhang Paglabag -->
+                            <!-- Nested Toggle: Mga halimbawa ng Malubhang Paglabag -->
                             <div class="mb-4">
                                 <div class="toggle-header" data-toggle="halimbawa-malubhang">
                                     <h4>A. Mga Halimbawa ng Malubhang Paglabag</h4>
@@ -811,22 +844,20 @@
                     if (content) {
                         const isActive = content.classList.contains('active');
 
+                        // Determine the scope container for closing other toggles
+                        // This logic correctly identifies the parent .toggle-content or .section-page
                         let scopeContainer = header.closest('.toggle-content');
-                        
-                        // If the clicked header is a direct child of a section-page (e.g., A, B, C, D in Section I),
-                        // its scope should be the section-page itself to close other A, B, C, D toggles.
-                        // This handles the case where the direct parent is not a .toggle-content but a .section-page
-                        // or a .section-content that we've now made .toggle-content.
                         if (!scopeContainer) { 
                             scopeContainer = header.closest('.section-page');
                         }
 
                         // Close other active toggles within the determined scope
                         if (scopeContainer) {
-                            // Select only direct children toggle-headers within the scopeContainer
-                            // This prevents closing deeply nested toggles when a higher-level toggle is clicked
-                            scopeContainer.querySelectorAll(':scope > .mb-4 > .toggle-header.active').forEach(openHeader => {
-                                if (openHeader !== header) { 
+                            // Select only direct children toggle-headers within the scopeContainer's immediate children divs
+                            // This ensures that clicking a nested toggle only affects its siblings, not higher-level toggles
+                            scopeContainer.querySelectorAll(':scope > .mb-4 > .toggle-header.active, :scope > .toggle-header.active').forEach(openHeader => {
+                                // Exclude the currently clicked header and its direct parent if it's also a toggle-header
+                                if (openHeader !== header && !header.contains(openHeader)) { 
                                     const openContent = document.getElementById(openHeader.dataset.toggle + '-content');
                                     const openIcon = openHeader.querySelector('.toggle-icon');
                                     if (openContent) {
